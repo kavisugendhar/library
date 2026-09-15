@@ -144,14 +144,18 @@ app.delete('/kavi/librart/std-delete' ,async(res,req) => {
 
 const PORT = process.env.PORT || 5000;
 
-mongoose.connect(process.env.MONGO_URI)
-.then(() => {   
-    console.log('Successfully connected to MongoDB');
-    app.listen(PORT, () => {
-         console.log(`Server is running on http://localhost:${PORT}`);
-    });
-    }).catch((err) => {
-        console.error('Database connection failed', err.message);
-        
-    })
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("MongoDB Connected Successfully");
 
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error(
+      "Database connection failed:",
+      error.message
+    );
+  });
